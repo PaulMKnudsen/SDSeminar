@@ -111,7 +111,7 @@ table 123456718  "CSD Posted Seminar Reg. Header"
         Field(22; Comment; Boolean)
         {
             Caption = 'Comment';
-            CalcFormula = Exist ("CSD Seminar Comment Line" where ("Table Name" = const("Posted Seminar Registration"),
+            CalcFormula = Exist ("CSD Seminar Comment Line" where ("Table Name" = const("Posted Seminar Reg. Header"),
                                                               "No." = Field ("No.")));
             Editable = false;
             FieldClass = FlowField;

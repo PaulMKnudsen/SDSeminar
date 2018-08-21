@@ -5,6 +5,8 @@ table 123456710 "CSD Seminar Reg. Header"
     //     - Created new table
     //   Chapter 8 - Lab 2-3
     //     - Added LookupId and DrillDownPageId
+    //   Chapter 9 - Lab 1-1
+    //     - Added Field "No. Printed"
     Caption = 'Seminar Registration Header';
     LookupPageId= "CSD Posted Seminar Reg. List";
     DrillDownPageId= "CSD Posted Seminar Reg. List";
@@ -231,7 +233,7 @@ table 123456710 "CSD Seminar Reg. Header"
         Field(22; Comment; Boolean)
         {
             Caption = 'Comment';
-            CalcFormula = Exist ("CSD Seminar Comment Line" where ("Table Name" = const ("Seminar Registration"),
+            CalcFormula = Exist ("CSD Seminar Comment Line" where ("Table Name" = const ("Seminar Registration Header"),
                                                               "No." = Field ("No.")));
             Editable = false;
             FieldClass = FlowField;
@@ -291,6 +293,11 @@ table 123456710 "CSD Seminar Reg. Header"
         {
             Caption = 'Posting No.';
         }
+        field(40;"No. Printed";Integer)
+        {
+            Caption='No. Printed';
+            Editable=false;
+        }
     }
 
     keys
@@ -342,7 +349,7 @@ table 123456710 "CSD Seminar Reg. Header"
             ERROR(Text006, SeminarCharge.TableCaption);
 
         SeminarCommentLine.Reset;
-        SeminarCommentLine.SetRange("Table Name", SeminarCommentLine."Table Name"::"Seminar Registration");
+        SeminarCommentLine.SetRange("Table Name", SeminarCommentLine."Table Name"::"Seminar Registration Header");
         SeminarCommentLine.SetRange("No.", "No.");
         SeminarCommentLine.deleteALL;
     end;
